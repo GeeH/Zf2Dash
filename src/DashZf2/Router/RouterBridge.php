@@ -62,7 +62,7 @@ class RouterBridge implements RouteStackInterface
     public function match(Request $request)
     {
         $dashRouteMatch = $this->dashRouter->match($request);
-        if(is_null($dashRouteMatch)) {
+        if(!$dashRouteMatch->isSuccess()) {
             return null;
         }
         $routeMatch = new \Zend\Mvc\Router\Http\RouteMatch($dashRouteMatch->getParams());
